@@ -1,6 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TennisApp",
+    "\\TennisApp\\ClientApp",
+    "\\TennisApp\\ClientApp\\src",
+    "\\TennisApp\\ClientApp\\src\\app",
+    "\\TennisApp\\ClientApp\\src\\app\\fetch-data",
+    "\\TennisApp\\ClientApp\\src\\app\\home",
+    "\\TennisApp\\ClientApp\\src\\app\\players"
   ],
+  "SelectedNode": "\\TennisApp",
   "PreviewInSolutionExplorer": false
 }
