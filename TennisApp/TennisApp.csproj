@@ -43,6 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\matches\matches.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\players\player.model.ts" />
   </ItemGroup>
 

@@ -13,6 +13,7 @@ import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { PlayersComponent } from './players/players.component';
+import { MatchesComponent } from './matches/matches.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PlayersComponent } from './players/players.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    PlayersComponent
+    PlayersComponent,
+    MatchesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,6 +35,7 @@ import { PlayersComponent } from './players/players.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'players', component: PlayersComponent },
+      { path: 'matches', component: MatchesComponent },
     ])
   ],
   providers: [
