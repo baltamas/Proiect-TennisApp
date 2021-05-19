@@ -12,7 +12,7 @@ export class PlayersComponent implements OnInit {
   public players: Player[];
 
   constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
-    http.get<Player[]>(apiUrl + 'player').subscribe(result => {
+    http.get<Player[]>(apiUrl + 'players').subscribe(result => {
       this.players = result;
     }, error => console.error(error));
   }
