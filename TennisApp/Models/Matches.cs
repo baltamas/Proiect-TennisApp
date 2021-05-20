@@ -15,10 +15,10 @@ namespace TennisApp.Models
         [Required]
         public DateTime Date { get; set; }
         
-        public int Player1 { get; set; }
-        public int Player2 { get; set; }
+        public Player Player1 { get; set; }
+        public Player Player2 { get; set; }
         public Boolean Winner { get; set; }
-        [MinLength(20)]
-        public string Review { get; set; }
+       
+        public List<Reviews> Reviews { get; set; }
     }
 }

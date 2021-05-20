@@ -6,5 +6,5 @@ export class Matches {
   player1: number;
   player2: number;
   winner: string;
-  review: string;
+  reviews: string;
 }

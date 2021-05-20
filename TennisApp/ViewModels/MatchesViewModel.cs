@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TennisApp.Models;
 
 namespace TennisApp.ViewModel
 {
@@ -14,10 +15,10 @@ namespace TennisApp.ViewModel
 
         public DateTime Date { get; set; }
 
-        public int Player1 { get; set; }
-        public int Player2 { get; set; }
+        public Player Player1 { get; set; }
+        public Player Player2 { get; set; }
         public Boolean Winner { get; set; }
 
-        public string Review { get; set; }
+        public List<Reviews> Reviews{ get; set; }
     }
 }

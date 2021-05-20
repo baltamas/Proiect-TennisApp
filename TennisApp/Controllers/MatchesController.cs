@@ -43,7 +43,7 @@ namespace TennisApp.Controllers
                 Player1 = matches.Player1,
                 Player2 = matches.Player2,
                 Winner = matches.Winner,
-                Review = matches.Review
+                Reviews = matches.Reviews
             };
 
             if (matches == null)

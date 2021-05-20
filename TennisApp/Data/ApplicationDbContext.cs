@@ -13,12 +13,14 @@ namespace TennisApp.Data
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         public DbSet<Player> Player { get; set; }
+        public DbSet<Matches> Matches { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-        public DbSet<TennisApp.Models.Matches> Matches { get; set; }
+        
         
     }
 }
