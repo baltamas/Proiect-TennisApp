@@ -28,9 +28,27 @@ namespace TennisApp.Controllers
         {
             return await _context.Matches.ToListAsync();
         }
+        [HttpGet("{id}/Reviews")]
+        public ActionResult<IEnumerable<Reviews>> GetReviewsForMatch(int id)
+        {
+            return _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
+        }
+        [HttpPost("{id}/Reviews")]
+        public IActionResult PostReviewForMatch(int id, Reviews reviews)
+        {
+            reviews.Matches = _context.Matches.Find(id);
+            if (reviews.Matches == null)
+            {
+                return NotFound();
+            }
+            _context.Reviews.Add(reviews);
+            _context.SaveChanges();
 
-        // GET: api/Matches/5
-        [HttpGet("{id}")]
+            return Ok();
+        }
+
+            // GET: api/Matches/5
+            [HttpGet("{id}")]
         public async Task<ActionResult<Matches>> GetMatches(int id)
         {
             var matches = await _context.Matches.FindAsync(id);
@@ -53,7 +71,7 @@ namespace TennisApp.Controllers
 
             return matches;
         }
-
+      
         // PUT: api/Matches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

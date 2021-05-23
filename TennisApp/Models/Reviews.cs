@@ -14,7 +14,7 @@ namespace TennisApp.Models
         public DateTime Date { get; set; }
         [MinLength(20)]
         public string Text { get; set; }
-        //public Matches Matches { get; set; }
+        public Matches Matches { get; set; }
 
     }
 }

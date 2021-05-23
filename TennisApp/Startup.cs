@@ -26,6 +26,7 @@ namespace TennisApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -76,6 +77,9 @@ namespace TennisApp
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+          //  app.UseMvc();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
