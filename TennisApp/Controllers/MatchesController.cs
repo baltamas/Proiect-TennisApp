@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using TennisApp.Data;
 using TennisApp.Models;
 using TennisApp.ViewModel;
+using TennisApp.ViewModels;
 
 namespace TennisApp.Controllers
 {
@@ -29,9 +30,10 @@ namespace TennisApp.Controllers
             return await _context.Matches.ToListAsync();
         }
         [HttpGet("{id}/Reviews")]
-        public ActionResult<IEnumerable<Reviews>> GetReviewsForMatch(int id)
+        public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
+            var query
         {
-            return _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
+       /*     return _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
         }
         [HttpPost("{id}/Reviews")]
         public IActionResult PostReviewForMatch(int id, Reviews reviews)
@@ -46,7 +48,7 @@ namespace TennisApp.Controllers
 
             return Ok();
         }
-
+*/
             // GET: api/Matches/5
             [HttpGet("{id}")]
         public async Task<ActionResult<Matches>> GetMatches(int id)
