@@ -31,9 +31,7 @@ namespace TennisApp.Controllers
         }
         [HttpGet("{id}/Reviews")]
         public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
-            var query
-        {
-       /*     return _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
+            var query = _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
         }
         [HttpPost("{id}/Reviews")]
         public IActionResult PostReviewForMatch(int id, Reviews reviews)
