@@ -11,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TennisApp.Data;
 using TennisApp.Models;
+using AutoMapper;
+using System;
+using System.Reflection;
+using System.IO;
+
 
 namespace TennisApp
 {
@@ -26,6 +31,8 @@ namespace TennisApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen();
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddMvc();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -48,6 +55,7 @@ namespace TennisApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +79,19 @@ namespace TennisApp
             {
                 app.UseSpaStaticFiles();
             }
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+      
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

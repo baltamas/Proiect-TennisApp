@@ -18,6 +18,6 @@ namespace TennisApp.ViewModels
         public Player Player2 { get; set; }
         public Boolean Winner { get; set; }
 
-        public List<Reviews> Reviews { get; set; }
+        public List<ReviewsViewModel> Reviews { get; set; }
     }
 }

@@ -9,7 +9,6 @@ namespace TennisApp.Models
     public class Reviews
     {[Key]
         public int ReviewId { get; set; }
-        [Required]
         public ApplicationUser User { get; set; }
         public DateTime Date { get; set; }
         [MinLength(20)]

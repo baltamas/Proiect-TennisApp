@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using TennisApp.Data;
 using TennisApp.Models;
 using TennisApp.ViewModel;
@@ -17,10 +17,14 @@ namespace TennisApp.Controllers
     public class MatchesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<MatchesController> _logger;
+        private readonly IMapper _mapper;
 
-        public MatchesController(ApplicationDbContext context)
+        public MatchesController(ApplicationDbContext context, ILogger<MatchesController> logger, IMapper mapper)
         {
             _context = context;
+            _logger = logger;
+            _mapper = mapper;
         }
 
         // GET: api/Matches
@@ -29,49 +33,33 @@ namespace TennisApp.Controllers
         {
             return await _context.Matches.ToListAsync();
         }
-        [HttpGet("{id}/Reviews")]
-        public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
-            var query = _context.Reviews.Where(r => r.Matches.MatchId == id).ToList();
-        }
-        [HttpPost("{id}/Reviews")]
-        public IActionResult PostReviewForMatch(int id, Reviews reviews)
-        {
-            reviews.Matches = _context.Matches.Find(id);
-            if (reviews.Matches == null)
-            {
-                return NotFound();
-            }
-            _context.Reviews.Add(reviews);
-            _context.SaveChanges();
 
-            return Ok();
-        }
-*/
             // GET: api/Matches/5
             [HttpGet("{id}")]
-        public async Task<ActionResult<Matches>> GetMatches(int id)
+        public async Task<ActionResult<MatchesViewModel>> GetMatches(int id)
         {
             var matches = await _context.Matches.FindAsync(id);
-
-            var matchesViewModel = new MatchesViewModel
-            {
-                MatchId = matches.MatchId,
-                Stage = matches.Stage,
-                Date = matches.Date,
-                Player1 = matches.Player1,
-                Player2 = matches.Player2,
-                Winner = matches.Winner,
-                Reviews = matches.Reviews
-            };
 
             if (matches == null)
             {
                 return NotFound();
             }
 
-            return matches;
+            var matchesViewModel = _mapper.Map<MatchesViewModel>(matches);
+            return matchesViewModel;
         }
-      
+
+        [HttpGet("{id}/Reviews")]
+        public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
+
+        {
+            var query = _context.Matches.Where(m => m.MatchId == id)
+                  .Include(m => m.Reviews)
+                  .Select(m => _mapper.Map<MatchesWithReviewsViewModel>(m));
+
+            return query.ToList();
+        }
+
         // PUT: api/Matches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -113,6 +101,24 @@ namespace TennisApp.Controllers
 
             return CreatedAtAction("GetMatches", new { id = matches.MatchId }, matches);
         }
+        [HttpPost("{id}/Reviews")]
+        public IActionResult PostReviewsForMatch(int id, Reviews reviews)
+        {
+            var matches = _context.Matches
+                .Where(m => m.MatchId == id)
+                .Include(m => m.Reviews).FirstOrDefault();
+
+            if (matches == null)
+            {
+                return NotFound();
+            }
+
+            matches.Reviews.Add(reviews);
+            _context.Entry(matches).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Ok();
+        }
 
         // DELETE: api/Matches/5
         [HttpDelete("{id}")]
@@ -129,7 +135,21 @@ namespace TennisApp.Controllers
 
             return NoContent();
         }
+        // DELETE: api/Matches/1/Reviews/5
+        [HttpDelete("{id}/Reviews/{reviewId}")]
+        public async Task<IActionResult> DeleteReview(int reviewId)
+        {
+            var review = await _context.Reviews.FindAsync(reviewId);
+            if (review == null)
+            {
+                return NotFound();
+            }
 
+            _context.Reviews.Remove(review);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool MatchesExists(int id)
         {
             return _context.Matches.Any(e => e.MatchId == id);
