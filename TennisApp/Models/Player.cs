@@ -17,7 +17,7 @@ namespace TennisApp.Models
         public int Age { get; set; }
         [Required]
         public string Nationality { get; set; }
-
+        [Required]
         public string Gender { get; set; }
         [Required]
        // [Range(1.0, 7.0)]
