@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TennisApp.Data;
 using TennisApp.Models;
+using FluentValidation;
 
 namespace TennisApp
 {
