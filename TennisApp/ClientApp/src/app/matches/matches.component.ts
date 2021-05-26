@@ -7,14 +7,6 @@ import { Matches } from './matches.model';
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css']
 })
-export class MatchesComponent implements OnInit {
-  public matches: Matches[];
-
-  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
-    http.get<Matches[]>(apiUrl + 'matches').subscribe(result => {
-      this.matches = result;
-    }, error => console.error(error));
-  }
-  ngOnInit() {
-  }
+export class MatchesComponent {
+  
 }
