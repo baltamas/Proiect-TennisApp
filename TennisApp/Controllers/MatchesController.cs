@@ -48,6 +48,17 @@ namespace TennisApp.Controllers
             var matchesViewModel = _mapper.Map<MatchesViewModel>(matches);
             return matchesViewModel;
         }
+        [HttpGet("{id}/MatchPlayers")]
+        public ActionResult<IEnumerable<MatchesWithPlayersViewModel>> GetPlayersForMatch(int id)
+
+        {
+            var query = _context.Matches.Where(m => m.MatchId == id)
+                  .Include(m => m.Player1)
+                  .Include(m => m.Player2)
+                  .Select(m => _mapper.Map<MatchesWithPlayersViewModel>(m));
+
+            return query.ToList();
+        }
 
         [HttpGet("{id}/Reviews")]
         public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
@@ -114,6 +125,26 @@ namespace TennisApp.Controllers
             }
 
             matches.Reviews.Add(reviews);
+            _context.Entry(matches).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Ok();
+        }
+        [HttpPost("{id}/MatchPlayers")]
+        public IActionResult PostPlayersForMatch(int id, PlayerViewModel player)
+        {
+            var matches = _context.Matches
+                .Include(m => m.Player1)
+                .Include(m => m.Player2)
+                .Where(m => m.MatchId == id)
+                ;
+
+            if (matches == null)
+            {
+                return NotFound();
+            }
+
+            matches.Player.Add(player);
             _context.Entry(matches).State = EntityState.Modified;
             _context.SaveChanges();
 

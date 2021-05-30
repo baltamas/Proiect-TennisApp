@@ -16,7 +16,9 @@ namespace TennisApp
                 CreateMap<Matches, MatchesViewModel>();//.ReverseMap();
                 CreateMap<Reviews, ReviewsViewModel>();
                 CreateMap<Matches, MatchesWithReviewsViewModel>();
-            }
+                CreateMap<Player,PlayerViewModel>();
+                CreateMap<Matches, MatchesWithPlayersViewModel>();
+        }
         }
     }
 
