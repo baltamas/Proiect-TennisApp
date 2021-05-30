@@ -11,7 +11,7 @@ namespace TennisApp.Models
         public int ReviewId { get; set; }
         public ApplicationUser User { get; set; }
         public DateTime Date { get; set; }
-        [MinLength(20)]
+        //[MinLength(20)]
         public string Text { get; set; }
         public Matches Matches { get; set; }
 

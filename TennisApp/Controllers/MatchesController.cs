@@ -29,9 +29,11 @@ namespace TennisApp.Controllers
 
         // GET: api/Matches
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Matches>>> GetMatches()
+        public async Task<ActionResult<IEnumerable<MatchesViewModel>>> GetMatches()
         {
-            return await _context.Matches.ToListAsync();
+            var matches = await _context.Matches.Select (m => _mapper.Map<MatchesViewModel>(m)).ToListAsync();
+
+            return matches;
         }
 
             // GET: api/Matches/5
@@ -63,14 +65,14 @@ namespace TennisApp.Controllers
         // PUT: api/Matches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMatches(int id, Matches matches)
+        public async Task<IActionResult> PutMatches(int id, MatchesViewModel matches)
         {
             if (id != matches.MatchId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(matches).State = EntityState.Modified;
+            _context.Entry(_mapper.Map<Matches>(matches)).State = EntityState.Modified;
 
             try
             {
@@ -94,15 +96,16 @@ namespace TennisApp.Controllers
         // POST: api/Matches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Matches>> PostMatches(Matches matches)
+        public async Task<ActionResult<Matches>> PostMatches(MatchesViewModel matches)
         {
-            _context.Matches.Add(matches);
+            _context.Matches.Add(_mapper.Map<Matches>(matches));
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMatches", new { id = matches.MatchId }, matches);
         }
+
         [HttpPost("{id}/Reviews")]
-        public IActionResult PostReviewsForMatch(int id, Reviews reviews)
+        public IActionResult PostReviewsForMatch(int id, ReviewsViewModel reviews)
         {
             var matches = _context.Matches
                 .Where(m => m.MatchId == id)
@@ -113,7 +116,7 @@ namespace TennisApp.Controllers
                 return NotFound();
             }
 
-            matches.Reviews.Add(reviews);
+            matches.Reviews.Add(_mapper.Map<Reviews>(reviews));
             _context.Entry(matches).State = EntityState.Modified;
             _context.SaveChanges();
 

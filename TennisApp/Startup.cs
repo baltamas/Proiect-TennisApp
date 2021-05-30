@@ -15,7 +15,10 @@ using AutoMapper;
 using System;
 using System.Reflection;
 using System.IO;
-
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using TennisApp.Validators;
+using TennisApp.ViewModels;
 
 namespace TennisApp
 {
@@ -48,13 +51,15 @@ namespace TennisApp
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddTransient<IValidator<ReviewsViewModel>, ReviewsValidator>();
 
         }
 
