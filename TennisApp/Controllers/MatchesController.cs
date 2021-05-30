@@ -144,7 +144,8 @@ namespace TennisApp.Controllers
                 return NotFound();
             }
 
-            matches.Player.Add(player);
+           
+            matches.Player.Add(_mapper.Map<Player>(player));
             _context.Entry(matches).State = EntityState.Modified;
             _context.SaveChanges();
 
