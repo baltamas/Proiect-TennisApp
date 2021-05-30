@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TennisApp.Data;
 using TennisApp.Models;
+using TennisApp.ViewModels;
 
 namespace TennisApp.Controllers
 {
@@ -76,8 +77,9 @@ namespace TennisApp.Controllers
         // POST: api/Players
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Player>> PostPlayer(Player player)
+        public async Task<ActionResult<PlayerViewModel>> PostPlayer(PlayerViewModel playerRequest)
         {
+            Player player = _mapper.Map<Player>(playerRequest);
             _context.Player.Add(player);
             await _context.SaveChangesAsync();
 
