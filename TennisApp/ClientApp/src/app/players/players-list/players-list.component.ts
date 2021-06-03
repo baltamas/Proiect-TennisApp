@@ -12,12 +12,13 @@ export class PlayersListComponent implements OnInit {
 
   public players: Player[];
 
-  constructor(private playersService: PlayersService) {
+
+  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
+    http.get<Player[]>(apiUrl + 'players').subscribe(result => {
+      this.players = result;
+    }, error => console.error(error));
   }
 
-  getPlayers() {
-    this.playersService.getPlayers().subscribe(p => this.players = p);
-  }
 
   ngOnInit() {
   }

@@ -51,13 +51,15 @@ namespace TennisApp
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddTransient<IValidator<PlayerViewModel>, PlayerValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

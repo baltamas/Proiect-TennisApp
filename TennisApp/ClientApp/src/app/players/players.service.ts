@@ -8,13 +8,13 @@ import { Player } from './player.model';
 })
 export class PlayersService {
 
-  private apiUrl: string;
+  //private apiUrl: string;
 
-  constructor(private httpClient: HttpClient, @Inject('API_URL') apiUrl: string) {
-    this.apiUrl = apiUrl;
-  }
+  //constructor(private httpClient: HttpClient, @Inject('API_URL') apiUrl: string) {
+  //  this.apiUrl = apiUrl;
+  //}
 
-  getPlayers(): Observable<Player[]> {
-    return this.httpClient.get<Player[]>(this.apiUrl + 'player');
-  }
+  //getPlayers(): Observable<Player[]> {
+  //  return this.httpClient.get<Player[]>(this.apiUrl + 'players');
+  //}
 }
