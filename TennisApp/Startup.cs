@@ -11,10 +11,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TennisApp.Data;
 using TennisApp.Models;
-using FluentValidation;
+using AutoMapper;
+using System;
+using System.Reflection;
+using System.IO;
 using FluentValidation.AspNetCore;
-using TennisApp.ViewModels;
+using FluentValidation;
 using TennisApp.Validators;
+using TennisApp.ViewModels;
 
 namespace TennisApp
 {
@@ -30,6 +34,9 @@ namespace TennisApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen();
+            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddMvc();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -44,16 +51,13 @@ namespace TennisApp
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews()
-                .AddFluentValidation()
-                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter()));
+            services.AddControllersWithViews();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddTransient<IValidator<PlayerViewModel>, PlayerValidator>(); // sau add scoped
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,12 +81,28 @@ namespace TennisApp
             {
                 app.UseSpaStaticFiles();
             }
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+      
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+          //  app.UseMvc();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -10,11 +10,9 @@ namespace TennisApp.ViewModels
     {
         
         public int ReviewId { get; set; }
-        
         public ApplicationUser User { get; set; }
         public DateTime Date { get; set; }
         public string Text { get; set; }
-      //  public Matches Matches { get; set; }
 
     }
 }

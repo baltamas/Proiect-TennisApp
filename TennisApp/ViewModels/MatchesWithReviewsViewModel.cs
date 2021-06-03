@@ -4,11 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TennisApp.Models;
 
-namespace TennisApp.ViewModel
+namespace TennisApp.ViewModels
 {
-    public class MatchesViewModel
+    public class MatchesWithReviewsViewModel
     {
-
         public int MatchId { get; set; }
 
         public string Stage { get; set; }
@@ -19,5 +18,6 @@ namespace TennisApp.ViewModel
         public Player Player2 { get; set; }
         public Boolean Winner { get; set; }
 
+        public List<ReviewsViewModel> Reviews { get; set; }
     }
 }

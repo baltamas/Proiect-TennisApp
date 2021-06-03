@@ -1,0 +1,30 @@
+
+<h1>Matches</h1>
+<p>Check out matches details!</p>
+
+<p *ngIf="!matches"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matches">
+  <thead>
+    <tr>
+      <th>MatchId</th>
+      <th>Stage</th>
+      <th>Date</th>
+      <th>Player1</th>
+      <th>Player2</th>
+      <th>Winner</th>
+      <th>Reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let matches of matches">
+      <td>{{ matches.matchId }}</td>
+      <td>{{ matches.stage }}</td>
+      <td>{{ matches.date }}</td>
+      <td>{{ matches.player1 }}</td>
+      <td>{{ matches.player2 }}</td>
+      <td>{{ matches.winner }}</td>
+      <td>{{ matches.reviews }}</td>
+    </tr>
+  </tbody>
+</table>

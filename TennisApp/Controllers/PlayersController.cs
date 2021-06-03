@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,22 +17,25 @@ namespace TennisApp.Controllers
     public class PlayersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public PlayersController(ApplicationDbContext context)
+        public PlayersController(ApplicationDbContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
         // GET: api/Players
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Player>>> GetPlayer()
+        public async Task<ActionResult<IEnumerable<PlayerViewModel>>> GetPlayer()
         {
-            return await _context.Player.ToListAsync();
+            var players = await _context.Player.Select(p => _mapper.Map<PlayerViewModel>(p)).ToListAsync();
+            return players;
         }
 
         // GET: api/Players/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Player>> GetPlayer(int id)
+        public async Task<ActionResult<PlayerViewModel>> GetPlayer(int id)
         {
             var player = await _context.Player.FindAsync(id);
 
@@ -40,20 +44,22 @@ namespace TennisApp.Controllers
                 return NotFound();
             }
 
-            return player;
+            var playerViewModel = _mapper.Map<PlayerViewModel>(player);
+
+            return playerViewModel;
         }
 
         // PUT: api/Players/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPlayer(int id, Player player)
+        public async Task<IActionResult> PutPlayer(int id, PlayerViewModel player)
         {
             if (id != player.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(player).State = EntityState.Modified;
+            _context.Entry(_mapper.Map<Player>(player)).State = EntityState.Modified;
 
             try
             {
