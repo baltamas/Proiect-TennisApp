@@ -19,6 +19,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using TennisApp.Validators;
 using TennisApp.ViewModels;
+using TennisApp.ViewModel;
 
 namespace TennisApp
 {
@@ -60,6 +61,8 @@ namespace TennisApp
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddTransient<IValidator<PlayerViewModel>, PlayerValidator>();
+            services.AddTransient<IValidator<MatchesViewModel>, MatchesValidator>();
+            services.AddTransient<IValidator<ReviewsViewModel>, ReviewsValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
