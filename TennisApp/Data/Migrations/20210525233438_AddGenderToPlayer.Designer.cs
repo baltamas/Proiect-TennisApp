@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TennisApp.Data;
 
 namespace TennisApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210525233438_AddGenderToPlayer")]
+    partial class AddGenderToPlayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -487,15 +489,13 @@ namespace TennisApp.Data.Migrations
 
             modelBuilder.Entity("TennisApp.Models.Reviews", b =>
                 {
-                    b.HasOne("TennisApp.Models.Matches", "Matches")
+                    b.HasOne("TennisApp.Models.Matches", null)
                         .WithMany("Reviews")
                         .HasForeignKey("MatchesMatchId");
 
                     b.HasOne("TennisApp.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Matches");
 
                     b.Navigation("User");
                 });

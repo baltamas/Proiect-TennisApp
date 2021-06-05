@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { PlayersComponent } from './players/players.component';
+import { PlayersListComponent } from './players/players-list/players-list.component';
 import { MatchesListComponent } from './matches/matches-list/matches-list.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { MatchesListComponent } from './matches/matches-list/matches-list.compon
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    PlayersComponent,
+    PlayersListComponent,
     MatchesListComponent
   ],
   imports: [
@@ -34,7 +34,7 @@ import { MatchesListComponent } from './matches/matches-list/matches-list.compon
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'players', component: PlayersComponent },
+      { path: 'players', component: PlayersListComponent },
       { path: 'matches', component: MatchesListComponent },
     ])
   ],

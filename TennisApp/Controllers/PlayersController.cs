@@ -83,9 +83,10 @@ namespace TennisApp.Controllers
         // POST: api/Players
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Player>> PostPlayer(PlayerViewModel player)
+        public async Task<ActionResult<PlayerViewModel>> PostPlayer(PlayerViewModel playerRequest)
         {
-            _context.Player.Add(_mapper.Map<Player>(player));
+            Player player = _mapper.Map<Player>(playerRequest);
+            _context.Player.Add(player);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPlayer", new { id = player.Id }, player);

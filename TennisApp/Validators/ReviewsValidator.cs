@@ -13,8 +13,8 @@ namespace TennisApp.Validators
         public ReviewsValidator()
         {
             RuleFor(x => x.User).NotEmpty().WithMessage("User is mandatory!");
-            RuleFor(x => x.Text).MinimumLength(20).WithMessage("The text must containt at least 20 chars");
-            RuleFor(x => x.Date).NotEmpty().WithMessage("Introduce date! The date is mandatory");
+            RuleFor(x => x.Text).MinimumLength(20).WithMessage("The text must containt at least 20 chars!");
+            RuleFor(x => x.Date).NotEmpty().WithMessage("Introduce date! The date is mandatory!");
         }
     }
 }

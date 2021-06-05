@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowJs": true,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
@@ -17,10 +18,10 @@
       "es2017",
       "dom"
     ],
-   
-    "allowJs": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowJs": true
+
 
   }
 }
