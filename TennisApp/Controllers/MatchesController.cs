@@ -9,6 +9,7 @@ using TennisApp.Data;
 using TennisApp.Models;
 using TennisApp.ViewModel;
 using TennisApp.ViewModels;
+using TennisApp.ViewModels.PlayerViewModels;
 
 namespace TennisApp.Controllers
 {
@@ -72,6 +73,29 @@ namespace TennisApp.Controllers
                 return BadRequest();
             }
 
+            // updatare winner
+            if(matches.Winner != null)
+            {
+                var winnerId = matches.Winner.Value ? matches.Player1Id : matches.Player2Id;
+
+                var player = await _context.Player.FindAsync(winnerId.Value);
+                player.PlayerScore++;
+                _context.Entry(player).State = EntityState.Modified;
+
+                var dep1 = _context.Matches.Where(m => m.Dep1Id == id).ToList();
+                if(dep1.Count > 0)
+                {
+                    dep1[0].Player1Id = winnerId;
+                    _context.Entry(dep1[0]).State = EntityState.Modified;
+                }
+                var dep2 = _context.Matches.Where(m => m.Dep2Id == id).ToList();
+                if (dep2.Count > 0)
+                {
+                    dep2[0].Player2Id = winnerId;
+                    _context.Entry(dep2[0]).State = EntityState.Modified;
+                }                
+            }
+
             _context.Entry(_mapper.Map<Matches>(matches)).State = EntityState.Modified;
 
             try
@@ -96,12 +120,67 @@ namespace TennisApp.Controllers
         // POST: api/Matches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Matches>> PostMatches(MatchesViewModel matches)
+        public async Task<ActionResult<Matches>> PostMatches(MatchViewModel match)
         {
-            _context.Matches.Add(_mapper.Map<Matches>(matches));
+            _context.Matches.Add(_mapper.Map<Matches>(match));
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMatches", new { id = matches.MatchId }, matches);
+            return CreatedAtAction("GetMatches", new { id = match.Id }, match);
+        }
+
+        // POST: api/Matches/5/Players
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("{id}/Players")]
+        public async Task<ActionResult<Matches>> AddPlayersToMatch(int id, List<PlayerViewModel> players)
+        {
+            var match = _context.Matches.Where(m => m.MatchId == id).FirstOrDefault();
+            if (match == null)
+            {
+                return NotFound();
+            }
+            if (players.Count != 2)
+            {
+                return BadRequest();
+            }
+
+            var player1 = _context.Player.Where(p => p.Id == players[0].Id).FirstOrDefault();
+            var player2 = _context.Player.Where(p => p.Id == players[1].Id).FirstOrDefault();
+
+            match.Player1 = player1;
+            match.Player2 = player2;
+
+            _context.Entry(match).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        // POST: api/Matches/5/Player
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("{id}/Player")]
+        public async Task<ActionResult<Matches>> AddPlayer1ToMatch(int id, PlayerWithPositionViewModel playerViewModel)
+        {
+            var match = _context.Matches.Where(m => m.MatchId == id).FirstOrDefault();
+            if (match == null)
+            {
+                return NotFound();
+            }
+            if(playerViewModel.Pos !=1 && playerViewModel.Pos !=2)
+            {
+                return BadRequest();
+            }
+            
+            var player = _context.Player.Where(p => p.Id == playerViewModel.Id).FirstOrDefault();
+
+            if (playerViewModel.Pos == 1)
+                match.Player1 = player;
+            else
+                match.Player2 = player;
+
+            _context.Entry(match).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpPost("{id}/Reviews")]

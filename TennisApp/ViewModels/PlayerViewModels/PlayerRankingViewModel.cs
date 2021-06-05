@@ -2,28 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-namespace TennisApp.Models
+namespace TennisApp.ViewModels.PlayerViewModels
 {
-    public class Player
+    public class PlayerRankingViewModel
     {
-        public int Id { get; set; }
-        [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        [Required]
         public int Age { get; set; }
-        [Required]
         public string Nationality { get; set; }
-        [Required]
         public string Gender { get; set; }
-        [Required]
-       // [Range(1.0, 7.0)]
         public int PlayerRating { get; set; }
         public int PlayerScore { get; set; }
 
-            
+        public int Ranking { get; set; }
     }
 }

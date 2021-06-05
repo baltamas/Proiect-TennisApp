@@ -15,7 +15,7 @@ namespace TennisApp.Validators
             RuleFor(x => x.LastName).NotEmpty().WithMessage("Last name is mandatory!");
             RuleFor(x => x.Nationality).MinimumLength(3);
             RuleFor(x => x.Gender).NotEmpty().WithMessage("Please specify the gender: Female or Male!");
-            RuleFor(x => x.PlayerRating).InclusiveBetween(1, 7);
+            RuleFor(x => x.PlayerRating).InclusiveBetween(1, 1000);
         }
 
     }

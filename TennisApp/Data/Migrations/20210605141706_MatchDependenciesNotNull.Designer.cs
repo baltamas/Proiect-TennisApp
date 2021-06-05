@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TennisApp.Data;
 
 namespace TennisApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210605141706_MatchDependenciesNotNull")]
+    partial class MatchDependenciesNotNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -348,7 +350,7 @@ namespace TennisApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Winner")
+                    b.Property<bool>("Winner")
                         .HasColumnType("bit");
 
                     b.HasKey("MatchId");
@@ -390,11 +392,11 @@ namespace TennisApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlayerRating")
-                        .HasColumnType("int");
+                    b.Property<double>("PlayerRating")
+                        .HasColumnType("float");
 
-                    b.Property<int>("PlayerScore")
-                        .HasColumnType("int");
+                    b.Property<double>("PlayerScore")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

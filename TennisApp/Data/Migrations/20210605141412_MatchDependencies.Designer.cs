@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TennisApp.Data;
 
 namespace TennisApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210605141412_MatchDependencies")]
+    partial class MatchDependencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,10 +334,10 @@ namespace TennisApp.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Dep1Id")
+                    b.Property<int>("Dep1Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Dep2Id")
+                    b.Property<int>("Dep2Id")
                         .HasColumnType("int");
 
                     b.Property<int?>("Player1Id")
@@ -348,7 +350,7 @@ namespace TennisApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Winner")
+                    b.Property<bool>("Winner")
                         .HasColumnType("bit");
 
                     b.HasKey("MatchId");
@@ -390,11 +392,11 @@ namespace TennisApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlayerRating")
-                        .HasColumnType("int");
+                    b.Property<double>("PlayerRating")
+                        .HasColumnType("float");
 
-                    b.Property<int>("PlayerScore")
-                        .HasColumnType("int");
+                    b.Property<double>("PlayerScore")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -484,11 +486,15 @@ namespace TennisApp.Data.Migrations
                 {
                     b.HasOne("TennisApp.Models.Matches", "Dep1")
                         .WithMany()
-                        .HasForeignKey("Dep1Id");
+                        .HasForeignKey("Dep1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TennisApp.Models.Matches", "Dep2")
                         .WithMany()
-                        .HasForeignKey("Dep2Id");
+                        .HasForeignKey("Dep2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TennisApp.Models.Player", "Player1")
                         .WithMany()

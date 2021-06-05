@@ -13,7 +13,7 @@ namespace TennisApp.Validators
         {
             RuleFor(x => x.Stage).NotEmpty().WithMessage("Stage is mandatory!");
             RuleFor(x => x.Date).NotEmpty().WithMessage("You need to specify the date!");
-            RuleFor(x => x.Winner).NotEmpty().WithMessage("You need to choose who's the winner!");
+            //RuleFor(x => x.Winner).NotEmpty().WithMessage("You need to choose who's the winner!");
 
         }
 
