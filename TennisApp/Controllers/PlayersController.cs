@@ -38,40 +38,6 @@ namespace TennisApp.Controllers
         [HttpGet("Ranking")]
         public async Task<ActionResult<IEnumerable<PlayerRankingViewModel>>> GetRanking()
         {
-            //var players = await _context.Player.OrderByDescending(p => p.PlayerScore).ToListAsync();
-
-            //var customersByCountry = _context.Player.GroupBy(p => p.PlayerScore)
-            //    .Select(g => new {
-            //        PlayerScore = g.Key,
-            //        Count = g.Count(), 
-            //    });
-            //var ranks = customersByCountry
-            //    .Select(c => new
-            //    {
-            //        c.PlayerScore,
-            //        c.Count,
-            //        Rank = customersByCountry.Count(c2 => c2.Count > c.Count) + 1
-            //    });
-
-            //var a = ranks.ToQueryString();
-
-            //var q = from s in _context.Player
-            //        orderby s.PlayerScore descending
-            //        select new PlayerRankingViewModel
-            //        {
-            //            FirstName = s.FirstName,
-            //            LastName = s.LastName,
-            //            Age = s.Age,
-            //            Nationality = s.Nationality,
-            //            Gender = s.Gender,
-            //            PlayerRating = s.PlayerRating,
-            //            PlayerScore = s.PlayerScore,
-            //            Ranking = (from o in _context.Player
-            //                    where o.PlayerScore > s.PlayerScore
-            //                    select o).Count() + 1
-            //        };
-            //return await q.ToListAsync();
-
             var query = _context.Player.OrderByDescending(p => p.PlayerScore).Select(p => new PlayerRankingViewModel
             {
                 FirstName = p.FirstName,
@@ -85,29 +51,6 @@ namespace TennisApp.Controllers
             });
             return await query.ToListAsync();
 
-            //List<PlayerRankingViewModel> playerRankingViewModels = new List<PlayerRankingViewModel>();
-            //int currentRanking = 0;
-            //int currentScore = 0;
-            //foreach(Player p in players)
-            //{
-            //    if(p.PlayerScore != currentScore)
-            //    {
-            //        currentRanking++;
-            //        currentScore = p.PlayerScore;
-            //    }
-            //    PlayerRankingViewModel playerRankingViewModel = new PlayerRankingViewModel();
-            //    playerRankingViewModel.Ranking = currentRanking;
-            //    playerRankingViewModel.FirstName = p.FirstName;
-            //    playerRankingViewModel.LastName = p.LastName;
-            //    playerRankingViewModel.Age = p.Age;
-            //    playerRankingViewModel.Nationality = p.Nationality;
-            //    playerRankingViewModel.Gender = p.Gender;
-            //    playerRankingViewModel.PlayerRating = p.PlayerRating;
-            //    playerRankingViewModel.PlayerScore = p.PlayerScore;
-            //    playerRankingViewModels.Add(playerRankingViewModel);
-            //}
-
-            //return playerRankingViewModels;
         }
 
         // GET: api/Players/5

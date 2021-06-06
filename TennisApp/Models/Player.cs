@@ -20,7 +20,6 @@ namespace TennisApp.Models
         [Required]
         public string Gender { get; set; }
         [Required]
-       // [Range(1.0, 7.0)]
         public int PlayerRating { get; set; }
         public int PlayerScore { get; set; }
 
