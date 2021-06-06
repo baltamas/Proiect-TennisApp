@@ -4,6 +4,7 @@ export class Player {
   lastName: string;
   age: number;
   nationality: string;
+  gender: string;
   playerRating: number;
   playerScore: number;
 }

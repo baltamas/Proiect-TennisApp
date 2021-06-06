@@ -7,17 +7,7 @@ import { Player } from './player.model';
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent  {
 
-  public players: Player[];
-
-  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
-    http.get<Player[]>(apiUrl + 'players').subscribe(result => {
-      this.players = result;
-    }, error => console.error(error));
-  }
-
-  ngOnInit() {
-  }
 
 }

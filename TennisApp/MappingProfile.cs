@@ -13,10 +13,11 @@ namespace TennisApp
         {
             public MappingProfile()
             {
-                CreateMap<Matches, MatchesViewModel>();//.ReverseMap();
-                CreateMap<Reviews, ReviewsViewModel>();
-                CreateMap<Matches, MatchesWithReviewsViewModel>();
-            }
+                CreateMap<Matches, MatchesViewModel>().ReverseMap();
+                CreateMap<Reviews, ReviewsViewModel>().ReverseMap();
+                CreateMap<Matches, MatchesWithReviewsViewModel>().ReverseMap();
+                CreateMap<Player, PlayerViewModel>().ReverseMap();
+        }
         }
     }
 
