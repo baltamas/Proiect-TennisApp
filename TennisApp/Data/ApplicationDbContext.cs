@@ -15,6 +15,7 @@ namespace TennisApp.Data
         public DbSet<Player> Player { get; set; }
         public DbSet<Matches> Matches { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
