@@ -1,0 +1,25 @@
+<p *ngIf="!reviews"><em>Loading...</em></p>
+
+<!--<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="reviews">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let review of reviews.reviews">
+      <td>{{ review.date | date : 'short' }}</td>
+      <td>{{ review.text }}</td>
+      
+      
+    </tr>
+  </tbody>
+</table>-->
+
+<div *ngFor="let review of reviews.reviews">
+  <p>{{ review.date | date : 'short' }}</p>
+  <p>{{ review.text }}</p>
+</div>
+<p *ngIf="userLogedIn"><textarea id="review" name="review" rows="4" cols="50">Please write a review ...</textarea></p>
+<p *ngIf="userLogedIn"><button (click)="logOut()"> Log Out </button></p>

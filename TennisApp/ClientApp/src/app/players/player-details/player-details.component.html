@@ -1,10 +1,10 @@
-<h1 id="tableLabel">Players</h1>
+<h1 id="tableLabel">Player Details</h1>
 
 <p>Players Tennis Tournament.</p>
 
-<p *ngIf="!players"><em>Loading...</em></p>
+<p *ngIf="!player"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="player">
   <thead>
     <tr>
       <th>Id</th>
@@ -18,10 +18,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let player of players">
+    <tr>
       <td>{{ player.id }}</td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
+      <td>{{ player.firstName }}</td>
+      <td>{{ player.lastName }}</td>
       <td>{{ player.age }}</td>
       <td>{{ player.nationality }}</td>
       <td>{{ player.gender }}</td>

@@ -2,9 +2,9 @@
 <h1>Matches</h1>
 <p>Check out matches details!</p>
 
-<p *ngIf="!matches"><em>Loading...</em></p>
+<p *ngIf="!matcheswithplayers"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matches">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matcheswithplayers">
   <thead>
     <tr>
       <th>MatchId</th>
@@ -12,19 +12,22 @@
       <th>Date</th>
       <th>Player1</th>
       <th>Player2</th>
-      <th>Winner</th>
       <th>Reviews</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let matches of matches">
+    <tr *ngFor="let matches of matcheswithplayers">
       <td>{{ matches.matchId }}</td>
       <td>{{ matches.stage }}</td>
-      <td>{{ matches.date }}</td>
-      <td>{{ matches.player1 }}</td>
-      <td>{{ matches.player2 }}</td>
-      <td>{{ matches.winner }}</td>
-      <td>{{ matches.reviews }}</td>
+      <td>{{ matches.date | date : 'short' }}</td>
+
+      <td [ngStyle]="firstWinnerStyle(matches)"><a href="player-details?id={{ matches.player1Id }}"> {{ matches.player1Name }} </a></td>
+      <td [ngStyle]="secondWinnerStyle(matches)"><a href="player-details?id={{ matches.player2Id }}">{{ matches.player2Name }}  </a></td>
+
+      <td>
+        <button (click)="viewReviews(matches.matchId)"> View Reviews </button>
+        <button (click)="addReview(matches.matchId)"> Add Review </button>
+      </td>
     </tr>
   </tbody>
 </table>

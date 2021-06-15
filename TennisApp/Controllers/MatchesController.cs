@@ -9,6 +9,7 @@ using TennisApp.Data;
 using TennisApp.Models;
 using TennisApp.ViewModel;
 using TennisApp.ViewModels;
+using TennisApp.ViewModels.MatchesViewModels;
 using TennisApp.ViewModels.PlayerViewModels;
 
 namespace TennisApp.Controllers
@@ -53,12 +54,31 @@ namespace TennisApp.Controllers
         }
 
         [HttpGet("{id}/Reviews")]
-        public ActionResult<IEnumerable<MatchesWithReviewsViewModel>> GetReviewsForMatch(int id)
+        public ActionResult<MatchesWithReviewsViewModel> GetReviewsForMatch(int id)
 
         {
             var query = _context.Matches.Where(m => m.MatchId == id)
                   .Include(m => m.Reviews)
                   .Select(m => _mapper.Map<MatchesWithReviewsViewModel>(m));
+
+            return query.ToList()[0];
+        }
+
+        [HttpGet("Players")]
+        public ActionResult<IEnumerable<MatchesWithPlayerNamesViewModel>> GetMatchesWithPlayers()
+        {
+            var query = _context.Matches.Include(m => m.Player1).Include(m => m.Player2)
+                .Select(m => new MatchesWithPlayerNamesViewModel
+                {
+                    MatchId = m.MatchId,
+                    Stage = m.Stage,
+                    Date = m.Date,
+                    Player1Name = m.Player1.FirstName + " " + m.Player1.LastName,
+                    Player2Name = m.Player2.FirstName + " " + m.Player2.LastName,
+                    Winner = m.Winner,
+                    Player1Id = m.Player1Id.Value,
+                    Player2Id = m.Player2Id.Value
+                });
 
             return query.ToList();
         }

@@ -52,6 +52,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\login\auth.model.ts" />
+    <None Remove="ClientApp\src\app\matches\match-review\reviews.models.ts" />
+    <None Remove="ClientApp\src\app\matches\matches.with.player.model.ts" />
     <None Remove="ClientApp\src\app\players\player.model.ts" />
     <None Remove="ClientApp\src\app\players\players-list\players-list.component.ts" />
   </ItemGroup>
@@ -63,6 +66,10 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\players\player.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\nav-menu\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

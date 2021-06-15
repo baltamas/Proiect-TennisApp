@@ -6,6 +6,7 @@ using AutoMapper;
 using TennisApp.Models;
 using TennisApp.ViewModel;
 using TennisApp.ViewModels;
+using TennisApp.ViewModels.MatchesViewModels;
 using TennisApp.ViewModels.PlayerViewModels;
 
 namespace TennisApp
@@ -20,6 +21,9 @@ namespace TennisApp
             CreateMap<Player, PlayerViewModel>().ReverseMap();
             CreateMap<Matches, MatchViewModel>().ReverseMap();
             CreateMap<Player, PlayerRankingViewModel>().ReverseMap();
+            CreateMap<Matches, MatchesWithPlayersViewModel>().ReverseMap();
+            CreateMap<Matches, MatchesWithPlayerNamesViewModel>().ReverseMap();
+
         }
     }
 }
