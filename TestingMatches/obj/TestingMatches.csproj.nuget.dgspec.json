@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj": {}
+    "C:\\project\\DotNET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj": {}
   },
   "projects": {
-    "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj": {
+    "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj",
+        "projectUniqueName": "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj",
         "projectName": "TennisApp",
-        "projectPath": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj",
-        "packagesPath": "C:\\Users\\40745\\.nuget\\packages\\",
-        "outputPath": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\obj\\",
+        "projectPath": "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj",
+        "packagesPath": "C:\\Users\\Anca\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\40745\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Anca\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Angular.UI.Bootstrap": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
@@ -125,6 +129,10 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.1.4, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             }
           },
           "imports": [
@@ -145,21 +153,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj": {
+    "C:\\project\\DotNET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj",
+        "projectUniqueName": "C:\\project\\DotNET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj",
         "projectName": "TestingMatches",
-        "projectPath": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj",
-        "packagesPath": "C:\\Users\\40745\\.nuget\\packages\\",
-        "outputPath": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TestingMatches\\obj\\",
+        "projectPath": "C:\\project\\DotNET\\Proiect-TennisApp\\TestingMatches\\TestingMatches.csproj",
+        "packagesPath": "C:\\Users\\Anca\\.nuget\\packages\\",
+        "outputPath": "C:\\project\\DotNET\\Proiect-TennisApp\\TestingMatches\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\40745\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Anca\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -173,8 +181,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj": {
-                "projectPath": "D:\\cursPostuniv\\.NET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj"
+              "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj": {
+                "projectPath": "C:\\project\\DotNET\\Proiect-TennisApp\\TennisApp\\TennisApp.csproj"
               }
             }
           }
@@ -221,7 +229,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

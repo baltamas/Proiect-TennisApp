@@ -13,6 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Angular.UI.Bootstrap" Version="2.5.0" />
+    <PackageReference Include="bootstrap" Version="5.0.1" />
     <PackageReference Include="FluentValidation" Version="10.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.6" />
@@ -47,13 +49,26 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\single-elimination-tree\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClientApp\src\app\single-elimination-tree\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\single-elimination-tree\**" />
+    <TypeScriptCompile Remove="ClientApp\src\app\single-elimination-tree\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\players\player.model.ts" />
     <None Remove="ClientApp\src\app\players\players-list\players-list.component.ts" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\ngtt-single-elimination-tree.module.ts" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\single-elimination-tree.component.html" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\single-elimination-tree.component.scss" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\single-elimination-tree.component.spec.ts" />
+    <None Remove="ClientApp\src\app\single-elimination-tree\single-elimination-tree.component.ts" />
   </ItemGroup>
 
   <ItemGroup>

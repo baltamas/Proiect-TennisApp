@@ -1,0 +1,5 @@
+C:\project\DotNET\Proiect-TennisApp\TestingPlayers\obj\Debug\net5.0\TestingPlayers.csprojAssemblyReference.cache
+C:\project\DotNET\Proiect-TennisApp\TestingPlayers\obj\Debug\net5.0\TestingPlayers.GeneratedMSBuildEditorConfig.editorconfig
+C:\project\DotNET\Proiect-TennisApp\TestingPlayers\obj\Debug\net5.0\TestingPlayers.AssemblyInfoInputs.cache
+C:\project\DotNET\Proiect-TennisApp\TestingPlayers\obj\Debug\net5.0\TestingPlayers.AssemblyInfo.cs
+C:\project\DotNET\Proiect-TennisApp\TestingPlayers\obj\Debug\net5.0\TestingPlayers.csproj.CoreCompileInputs.cache
