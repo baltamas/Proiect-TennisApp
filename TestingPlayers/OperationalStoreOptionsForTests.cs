@@ -1,7 +1,7 @@
 ﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.Extensions.Options;
 
-namespace TestingMatches
+namespace TestingPlayers
 {
    
     public class OperationalStoreOptionsForTests : IOptions<OperationalStoreOptions>

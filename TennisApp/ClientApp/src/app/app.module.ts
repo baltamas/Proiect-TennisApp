@@ -14,7 +14,6 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { PlayersListComponent } from './players/players-list/players-list.component';
 import { MatchesListComponent } from './matches/matches-list/matches-list.component';
-import { MatchModule } from './match/match.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { MatchModule } from './match/match.module';
     HttpClientModule,
     FormsModule,
     ApiAuthorizationModule,
-    MatchModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
