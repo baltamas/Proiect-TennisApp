@@ -71,19 +71,19 @@ namespace TennisApp.Controllers
         [HttpGet("Players")]
         public ActionResult<IEnumerable<MatchesWithPlayerNamesViewModel>> GetMatchesWithPlayers()
         {
-            var query = _context.Matches.Include(m => m.Player1).Include(m => m.Player2)
+            var query = _context.Matches.Where(m => m.Player1Id!=null && m.Player2Id!=null).Include(m => m.Player1).Include(m => m.Player2)
                 .Select(m => new MatchesWithPlayerNamesViewModel
                 {
                     MatchId = m.MatchId,
                     Stage = m.Stage,
                     Date = m.Date,
-                    Player1Name = m.Player1.FirstName + " " + m.Player1.LastName,
-                    Player2Name = m.Player2.FirstName + " " + m.Player2.LastName,
+                    Player1Name = m.Player1!=null ? m.Player1.FirstName + " " + m.Player1.LastName : null,
+                    Player2Name = m.Player2!=null ? m.Player2.FirstName + " " + m.Player2.LastName : null,
                     Winner = m.Winner,
                     Player1Id = m.Player1Id.Value,
                     Player2Id = m.Player2Id.Value
                 });
-
+            var s = query.ToQueryString();
             return query.ToList();
         }
 
@@ -240,6 +240,25 @@ namespace TennisApp.Controllers
             }
 
             _context.Matches.Remove(matches);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // DELETE: api/Matches
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAllMatches()
+        {
+            //foreach (var match in _context.Matches)
+            //{
+            //    match.Dep1Id = null;
+            //    match.Dep2Id = null;
+            //    _context.Entry(match).State = EntityState.Modified;
+            //}
+            //await _context.SaveChangesAsync();
+
+            foreach (var match in _context.Matches)
+                _context.Matches.Remove(match);
             await _context.SaveChangesAsync();
 
             return NoContent();

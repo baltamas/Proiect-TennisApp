@@ -20,6 +20,7 @@ import { LoginPageComponent } from './login/login.page/login.page.component';
 import { TokenInterceptor } from './interceptors/auth.token.interceptor';
 import { PlayersRankingComponent } from './players/players-ranking/players-ranking.component';
 import { AddPlayerComponent } from './players/admin/add-player/add-player.component';
+import { AddMatchComponent } from './players/admin/add-match/add-match.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddPlayerComponent } from './players/admin/add-player/add-player.compon
     MatchReviewComponent,
     LoginPageComponent,
     AddPlayerComponent,
+    AddMatchComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,6 +54,7 @@ import { AddPlayerComponent } from './players/admin/add-player/add-player.compon
       { path: 'match-reviews', component: MatchReviewComponent },
       { path: 'login-user', component: LoginPageComponent },
       { path: 'admin/player', component: AddPlayerComponent },
+      { path: 'admin/matches', component: AddMatchComponent },
     ])
   ],
   providers: [

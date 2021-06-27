@@ -5,6 +5,13 @@ export class Matches {
   date: string;
   player1Id: number;
   player2Id: number;
-  winner: string;
+  winner: boolean;
   reviews: string;
+}
+
+export class MatchWithDeps {
+  stage: string;
+  date: Date;
+  dep1Id: number;
+  dep2Id: number;
 }
