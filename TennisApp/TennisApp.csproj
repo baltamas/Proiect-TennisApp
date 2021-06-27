@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.0.2" />
     <PackageReference Include="FluentValidation" Version="10.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.6" />
@@ -30,7 +31,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.2.4">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.3.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -52,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\home\home.component.ts" />
     <None Remove="ClientApp\src\app\interceptors\auth.token.interceptor.ts" />
     <None Remove="ClientApp\src\app\login\auth.model.ts" />
     <None Remove="ClientApp\src\app\matches\match-review\reviews.models.ts" />
@@ -62,6 +64,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\home\home - Copy.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\home\home.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\matches\matches-list\matches-list.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\matches\matches.model.ts" />
   </ItemGroup>
