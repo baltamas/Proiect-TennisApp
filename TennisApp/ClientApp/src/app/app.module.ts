@@ -17,6 +17,9 @@ import { MatchesListComponent } from './matches/matches-list/matches-list.compon
 import { PlayerDetailsComponent } from './players/player-details/player-details.component';
 import { MatchReviewComponent } from './matches/match-review/match-review.component';
 import { LoginPageComponent } from './login/login.page/login.page.component';
+import { TokenInterceptor } from './interceptors/auth.token.interceptor';
+import { PlayersRankingComponent } from './players/players-ranking/players-ranking.component';
+import { AddPlayerComponent } from './players/admin/add-player/add-player.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,12 @@ import { LoginPageComponent } from './login/login.page/login.page.component';
     //CounterComponent,
     //FetchDataComponent,
     PlayersListComponent,
+    PlayersRankingComponent,
     MatchesListComponent,
     PlayerDetailsComponent,
     MatchReviewComponent,
     LoginPageComponent,
+    AddPlayerComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,14 +46,17 @@ import { LoginPageComponent } from './login/login.page/login.page.component';
       //{ path: 'counter', component: CounterComponent },
       //{ path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'players', component: PlayersListComponent },
+      { path: 'ranking', component: PlayersRankingComponent },
       { path: 'matches', component: MatchesListComponent },
       { path: 'player-details', component: PlayerDetailsComponent },
       { path: 'match-reviews', component: MatchReviewComponent },
       { path: 'login-user', component: LoginPageComponent },
+      { path: 'admin/player', component: AddPlayerComponent },
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

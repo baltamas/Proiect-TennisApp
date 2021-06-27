@@ -1,0 +1,54 @@
+<h1 id="tableLabel">Players</h1>
+
+<p>Players Tennis Tournament.</p>
+
+<p *ngIf="!players"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Age</th>
+      <th>Nationality</th>
+      <th>Gender</th>
+      <th>PlayerRating</th>
+      <th>PlayerScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{ player.id }}</td>
+      <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
+      <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
+      <td>{{ player.age }}</td>
+      <td>{{ player.nationality }}</td>
+      <td>{{ player.gender }}</td>
+      <td>{{ player.playerRating }}</td>
+      <td>{{ player.playerScore }}</td>
+    </tr>
+  </tbody>
+</table>
+<form>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" [(ngModel)] ="player.firstName"><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" [(ngModel)] ="player.lastName" required><br>
+  <label for="age">Age:</label>
+  <input type="number" id="age" name="age" [(ngModel)] ="player.age"><br>
+  <label for="nationality">Nationality:</label>
+  <input type="text" id="nationality" name="nationality" [(ngModel)] ="player.nationality"><br>
+
+  <input type="radio" id="m" name="gender" value="m" [(ngModel)] ="player.gender">
+  <label for="m">M</label><br>
+  <input type="radio" id="f" name="gender" value="f" [(ngModel)] ="player.gender">
+  <label for="f">F</label><br>
+
+  <label for="rating">Rating:</label>
+  <input type="number" id="rating" name="rating" [(ngModel)] ="player.playerRating"><br>
+
+  <p>{{errors}}</p>
+
+  <button type="submit" (click)="addPlayer()">Add Player</button>
+</form>

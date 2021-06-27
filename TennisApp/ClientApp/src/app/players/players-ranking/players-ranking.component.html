@@ -1,0 +1,30 @@
+<h1 id="tableLabel">Players Ranking</h1>
+
+<p *ngIf="!players"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
+  <thead>
+    <tr>
+      <th>Ranking</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Age</th>
+      <th>Nationality</th>
+      <th>Gender</th>
+      <th>PlayerRating</th>
+      <th>PlayerScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{ player.ranking }}</td>
+      <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
+      <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
+      <td>{{ player.age }}</td>
+      <td>{{ player.nationality }}</td>
+      <td>{{ player.gender }}</td>
+      <td>{{ player.playerRating }}</td>
+      <td>{{ player.playerScore }}</td>
+    </tr>
+  </tbody>
+</table>

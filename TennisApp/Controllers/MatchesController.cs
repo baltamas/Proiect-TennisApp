@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -21,12 +23,14 @@ namespace TennisApp.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ILogger<MatchesController> _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MatchesController(ApplicationDbContext context, ILogger<MatchesController> logger, IMapper mapper)
+        public MatchesController(ApplicationDbContext context, ILogger<MatchesController> logger, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _logger = logger;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         // GET: api/Matches
@@ -203,24 +207,27 @@ namespace TennisApp.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}/Reviews")]
-        public IActionResult PostReviewsForMatch(int id, ReviewsViewModel reviews)
-        {
-            var matches = _context.Matches
-                .Where(m => m.MatchId == id)
-                .Include(m => m.Reviews).FirstOrDefault();
+        //[HttpPost("{id}/Reviews")]
+        //public async Task<IActionResult> PostReviewsForMatch(int id, ReviewsViewModel reviews)
+        //{
+        //    var matches = _context.Matches
+        //        .Where(m => m.MatchId == id)
+        //        .Include(m => m.Reviews).FirstOrDefault();
 
-            if (matches == null)
-            {
-                return NotFound();
-            }
+        //    if (matches == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            matches.Reviews.Add(_mapper.Map<Reviews>(reviews));
-            _context.Entry(matches).State = EntityState.Modified;
-            _context.SaveChanges();
+        //    var user = await _userManager.FindByNameAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        //    reviews.User = user;
 
-            return Ok();
-        }
+        //    matches.Reviews.Add(_mapper.Map<Reviews>(reviews));
+        //    _context.Entry(matches).State = EntityState.Modified;
+        //    _context.SaveChanges();
+
+        //    return Ok();
+        //}
 
         // DELETE: api/Matches/5
         [HttpDelete("{id}")]

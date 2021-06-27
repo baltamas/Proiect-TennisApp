@@ -40,6 +40,7 @@ namespace TennisApp.Controllers
         {
             var query = _context.Player.OrderByDescending(p => p.PlayerScore).Select(p => new PlayerRankingViewModel
             {
+                Id = p.Id,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Age = p.Age,
@@ -48,7 +49,7 @@ namespace TennisApp.Controllers
                 PlayerRating = p.PlayerRating,
                 PlayerScore = p.PlayerScore,
                 Ranking = (_context.Player.Where(p2 => p2.PlayerScore > p.PlayerScore).Count() + 1)
-            });
+            }); ;
             return await query.ToListAsync();
 
         }

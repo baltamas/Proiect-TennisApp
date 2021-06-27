@@ -15,7 +15,7 @@ export class MatchReviewComponent implements OnInit {
   reviews: MatchWithReviews;
   userLogedIn: boolean;
 
-  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string,
+  constructor(private http: HttpClient, @Inject('API_URL') private apiUrl: string,
     private route: ActivatedRoute, private authSvc: AuthService) {
     this.userLogedIn = this.authSvc.userLogedIn();
     this.route.queryParams.subscribe(params => {
@@ -38,5 +38,17 @@ export class MatchReviewComponent implements OnInit {
     this.authSvc.removeToken();
     this.userLogedIn = false;
     window.location.reload();
+  }
+
+  postComment(comment: string) {
+    const commentDetails = {
+      text: comment,
+      date: new Date(Date.now())
+    };
+    console.log(commentDetails);
+    this.http.post(this.apiUrl + `Reviews/${this.id}/Reviews`, commentDetails)
+      .subscribe((response) => {
+        window.location.reload();
+      }, error => console.error(error));
   }
 }

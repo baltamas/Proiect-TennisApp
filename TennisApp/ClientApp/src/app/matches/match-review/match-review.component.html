@@ -21,5 +21,8 @@
   <p>{{ review.date | date : 'short' }}</p>
   <p>{{ review.text }}</p>
 </div>
-<p *ngIf="userLogedIn"><textarea id="review" name="review" rows="4" cols="50">Please write a review ...</textarea></p>
+<div *ngIf="userLogedIn">
+  <p><textarea id="review" name="review" rows="4" cols="50" #comment>Please write a review ...</textarea></p>
+  <p><button (click)="postComment(comment.value)"> Post </button></p>
+</div>
 <p *ngIf="userLogedIn"><button (click)="logOut()"> Log Out </button></p>

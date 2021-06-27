@@ -52,11 +52,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\interceptors\auth.token.interceptor.ts" />
     <None Remove="ClientApp\src\app\login\auth.model.ts" />
     <None Remove="ClientApp\src\app\matches\match-review\reviews.models.ts" />
     <None Remove="ClientApp\src\app\matches\matches.with.player.model.ts" />
     <None Remove="ClientApp\src\app\players\player.model.ts" />
     <None Remove="ClientApp\src\app\players\players-list\players-list.component.ts" />
+    <None Remove="ClientApp\src\app\players\players-ranking\players-ranking.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +72,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\nav-menu\" />
+    <Folder Include="ClientApp\src\app\players\admin\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
