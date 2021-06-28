@@ -21,6 +21,8 @@ import { TokenInterceptor } from './interceptors/auth.token.interceptor';
 import { PlayersRankingComponent } from './players/players-ranking/players-ranking.component';
 import { AddPlayerComponent } from './players/admin/add-player/add-player.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,11 +37,15 @@ import { AddPlayerComponent } from './players/admin/add-player/add-player.compon
     MatchReviewComponent,
     LoginPageComponent,
     AddPlayerComponent,
+
+
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
