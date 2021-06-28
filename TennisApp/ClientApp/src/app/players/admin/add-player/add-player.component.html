@@ -13,40 +13,59 @@
       <th>Age</th>
       <th>Nationality</th>
       <th>Gender</th>
-      <th>PlayerRating</th>
-      <th>PlayerScore</th>
+      <th>Rating</th>
+      <th>Image URL</th>
+      <th>Description</th>
+      <!--<th>PlayerScore</th>-->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let player of players">
       <td>{{ player.id }}</td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
-      <td>{{ player.age }}</td>
-      <td>{{ player.nationality }}</td>
-      <td>{{ player.gender }}</td>
-      <td>{{ player.playerRating }}</td>
-      <td>{{ player.playerScore }}</td>
+      <td><input type="text" [(ngModel)]="player.firstName"></td>
+      <td><input type="text" [(ngModel)]="player.lastName"> </td>
+      <td><input type="number" [(ngModel)]="player.age"></td>
+      <td><input type="text" [(ngModel)]="player.nationality"></td>
+      <td>
+        <form>
+          <input type="radio" name="gender" value="m" [(ngModel)]="player.gender">M
+
+          <input type="radio" name="gender" value="f" [(ngModel)]="player.gender">F
+
+        </form>
+      </td>
+      <td><input type="number" [(ngModel)]="player.playerRating"></td>
+
+      <td><input type="text" [(ngModel)]="player.imageUrl"></td>
+      <td><textarea rows="2" [(ngModel)]="player.description"></textarea></td>
+
+      <td><button type="submit" (click)="updatePlayer(player)">Update</button></td>
+      <td><button type="submit" (click)="deletePlayer(player.id)">Delete</button></td>
     </tr>
   </tbody>
 </table>
 <form>
   <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname" [(ngModel)] ="player.firstName"><br>
+  <input type="text" id="fname" name="fname" [(ngModel)]="player.firstName"><br>
   <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname" [(ngModel)] ="player.lastName" required><br>
+  <input type="text" id="lname" name="lname" [(ngModel)]="player.lastName" required><br>
   <label for="age">Age:</label>
-  <input type="number" id="age" name="age" [(ngModel)] ="player.age"><br>
+  <input type="number" id="age" name="age" [(ngModel)]="player.age"><br>
   <label for="nationality">Nationality:</label>
-  <input type="text" id="nationality" name="nationality" [(ngModel)] ="player.nationality"><br>
+  <input type="text" id="nationality" name="nationality" [(ngModel)]="player.nationality"><br>
 
-  <input type="radio" id="m" name="gender" value="m" [(ngModel)] ="player.gender">
+  <input type="radio" id="m" name="gender" value="m" [(ngModel)]="player.gender">
   <label for="m">M</label><br>
-  <input type="radio" id="f" name="gender" value="f" [(ngModel)] ="player.gender">
+  <input type="radio" id="f" name="gender" value="f" [(ngModel)]="player.gender">
   <label for="f">F</label><br>
 
   <label for="rating">Rating:</label>
-  <input type="number" id="rating" name="rating" [(ngModel)] ="player.playerRating"><br>
+  <input type="number" id="rating" name="rating" [(ngModel)]="player.playerRating"><br>
+
+  <label for="imgUrl">Image URL:</label>
+  <input type="text" id="imgUrl" name="imgUrl" [(ngModel)]="player.imageUrl"><br>
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="2" cols="50" [(ngModel)]="player.description"></textarea>
 
   <p>{{errors}}</p>
 

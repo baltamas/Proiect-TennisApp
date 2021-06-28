@@ -16,6 +16,7 @@ namespace TennisApp.ViewModels
         public string Gender { get; set; }
         public double PlayerRating { get; set; }
         public double PlayerScore { get; set; }
-
+        public string ImageUrl { get; set; }
+        public string Description { get; set; }
     }
 }

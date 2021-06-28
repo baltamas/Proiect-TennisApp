@@ -53,7 +53,7 @@ import { AddMatchComponent } from './players/admin/add-match/add-match.component
       { path: 'player-details', component: PlayerDetailsComponent },
       { path: 'match-reviews', component: MatchReviewComponent },
       { path: 'login-user', component: LoginPageComponent },
-      { path: 'admin/player', component: AddPlayerComponent },
+      { path: 'admin/players', component: AddPlayerComponent },
       { path: 'admin/matches', component: AddMatchComponent },
     ])
   ],

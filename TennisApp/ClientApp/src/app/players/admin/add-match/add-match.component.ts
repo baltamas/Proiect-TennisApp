@@ -31,7 +31,6 @@ export class AddMatchComponent implements OnInit {
 
   loadMatches() {
     this.http.get<Matches[]>(this.apiUrl + 'matches').subscribe(result => {
-      console.log(result);
       this.matches = result;
     }, error => console.error(error));
   }
@@ -53,9 +52,6 @@ export class AddMatchComponent implements OnInit {
 
   addMatches(stage: number) {
     let num_matches_per_stage = 1 << stage;
-    console.log("stage");
-    console.log(this.stage);
-
     if (this.stage == this.num_stages - 1) {
       for (let i = 0; i < num_matches_per_stage; i++) {
         this.addMatch(this.stage);
@@ -67,12 +63,6 @@ export class AddMatchComponent implements OnInit {
       let match1Id = 0;
       let match2Id = 0;
       for (let i = 0; i < this.matches.length; i++) {
-        console.log("MATCH.................");
-        console.log(this.matches[i]);
-        console.log("stagestr");
-        console.log(this.matches[i].stage);
-        console.log(this.stageToString(stage + 1));
-
         if (this.matches[i].stage == this.stageToString(stage + 1)) {
           if (!m2)
             match1Id = this.matches[i].matchId;
@@ -99,8 +89,7 @@ export class AddMatchComponent implements OnInit {
       () => {
         this.num_generated_matches++;
         let num_matches_per_stage = 1 << stage;
-        console.log("1 " + this.num_generated_matches);
-        console.log("2 " + num_matches_per_stage);
+
         if (this.num_generated_matches == num_matches_per_stage) {
           //this.loadMatches();
           this.http.get<Matches[]>(this.apiUrl + 'matches').subscribe(result => {

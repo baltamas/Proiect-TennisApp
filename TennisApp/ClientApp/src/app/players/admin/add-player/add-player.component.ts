@@ -31,6 +31,21 @@ export class AddPlayerComponent implements OnInit {
       }    )
   }
 
+  updatePlayer(player: Player) {
+    this.http.put(this.apiUrl + 'players/' + player.id, player).subscribe(result => {
+      
+    }, error => console.error(error));
+  }
+
+  deletePlayer(id: number) {
+    this.http.delete(this.apiUrl + 'players/' + id).subscribe(
+      () => { this.loadPlayers(); this.errors = ""; },
+      (err) => {
+        this.errors = JSON.stringify(err);
+      })
+  }
+
+
   ngOnInit() {
   }
 

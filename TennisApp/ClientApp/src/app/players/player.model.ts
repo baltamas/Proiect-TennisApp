@@ -7,6 +7,8 @@ export class Player {
   gender: string;
   playerRating: number;
   playerScore: number;
+  imageUrl: string;
+  description: string;
 }
 
 export class PlayerWithRanking {

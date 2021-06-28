@@ -4,29 +4,14 @@
 
 <p *ngIf="!player"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="player">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Age</th>
-      <th>Nationality</th>
-      <th>Gender</th>
-      <th>PlayerRating</th>
-      <th>PlayerScore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ player.id }}</td>
-      <td>{{ player.firstName }}</td>
-      <td>{{ player.lastName }}</td>
-      <td>{{ player.age }}</td>
-      <td>{{ player.nationality }}</td>
-      <td>{{ player.gender }}</td>
-      <td>{{ player.playerRating }}</td>
-      <td>{{ player.playerScore }}</td>
-    </tr>
-  </tbody>
-</table>
+
+<h1>{{ player.firstName }} {{ player.lastName }} </h1>
+<img [src]="player.imageUrl" width="500" height="600" />
+<p>Age: {{ player.age }}</p>
+<p>Nationality: {{ player.nationality }}</p>
+<p>Gender: {{ player.gender }}</p>
+<p>Rating: {{player.playerRating}}</p>
+<p>Score in tournament: {{ player.playerScore }}</p>
+{{player.description}}
+
+
