@@ -1,0 +1,16 @@
+.content {
+  padding: 50px 0px;
+}
+.content button {
+  
+  padding: 0px 10px;
+  background-color: #000000;
+  color: #00ff21;
+}
+
+  .content button:hover {
+    color: #ffffff;
+  }
+.form-content label {
+    margin-right: 30px;
+}

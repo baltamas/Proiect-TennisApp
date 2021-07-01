@@ -1,12 +1,28 @@
 <div class="container">
-  <label for="uname"><b>Username</b></label>
-  <input type="text" placeholder="Enter Username" name="uname" required #userName> 
+  <div id="cover1" class="cover">
+    <div class="container">
+      <div class="about">
+        <h2 id="tableLabel">Login</h2>
+        <p>
+          <span>
+            To enter a review, please Login <br /> using your commenter credentials.
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="login">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required #userName>
 
-  <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter Password" name="psw" required #passWord>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required #passWord>
 
-  <button type="submit" (click)="logIn(userName, passWord)">Login</button>
-  <!--<label>
-    <input type="checkbox" checked="checked" name="remember"> Remember me
-  </label>-->
+      <button type="submit" (click)="logIn(userName, passWord)">Login</button>
+      <!--<label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>-->
+    </div>
+
+  </div>
+  
 </div>

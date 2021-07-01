@@ -1,33 +1,52 @@
 
-<h1>Matches</h1>
-<p>Check out matches details!</p>
+<div id="cover1" class="cover">
+  <div class="container">
+    <div class="about">
+      <h2 id="tableLabel">Matches</h2>
+      <p>
+        <span>
+          The most exciting matches are played <br />in our tournament.
+          Don't miss them!
+        </span>
+      </p>
+      <p>Check out matches details!</p>
 
-<p *ngIf="!matcheswithplayers"><em>Loading...</em></p>
+      <p *ngIf="!matcheswithplayers"><em>Loading...</em></p>
+    </div>
+  </div>
+</div>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matcheswithplayers">
-  <thead>
-    <tr>
-      <th>MatchId</th>
-      <th>Stage</th>
-      <th>Date</th>
-      <th>Player1</th>
-      <th>Player2</th>
-      <th>Reviews</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let matches of matcheswithplayers">
-      <td>{{ matches.matchId }}</td>
-      <td>{{ matches.stage }}</td>
-      <td>{{ matches.date | date : 'short' }}</td>
 
-      <td [ngStyle]="firstWinnerStyle(matches)"><a href="player-details?id={{ matches.player1Id }}"> {{ matches.player1Name }} </a></td>
-      <td [ngStyle]="secondWinnerStyle(matches)"><a href="player-details?id={{ matches.player2Id }}">{{ matches.player2Name }}  </a></td>
 
-      <td>
-        <button (click)="viewReviews(matches.matchId)"> View Reviews </button>
-        <button (click)="addReview(matches.matchId)"> Add Review </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="container">
+  <div class="matches-tabel">
+    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matcheswithplayers">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Stage</th>
+          <th>Date</th>
+          <th>Player1</th>
+          <th>Player2</th>
+          <th>Reviews</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let matches of matcheswithplayers; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ matches.stage }}</td>
+          <td>{{ matches.date | date : 'short' }}</td>
+
+          <td [ngStyle]="firstWinnerStyle(matches)"><a href="player-details?id={{ matches.player1Id }}"> {{ matches.player1Name }} </a></td>
+          <td [ngStyle]="secondWinnerStyle(matches)"><a href="player-details?id={{ matches.player2Id }}">{{ matches.player2Name }}  </a></td>
+
+          <td>
+            <button (click)="viewReviews(matches.matchId)"> View Reviews </button>
+            <button (click)="addReview(matches.matchId)"> Add Review </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

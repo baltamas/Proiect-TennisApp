@@ -1,5 +1,34 @@
 <p *ngIf="!reviews"><em>Loading...</em></p>
+<div id="cover1" class="cover">
+  <div class="container">
+    <div class="about">
+      <h2 id="tableLabel">Reviews</h2>
+      <p>
+        <span>
+          The best sports commentators <br />are with us at TennisApp.
+        </span>
+      </p>
+    </div>
+    
+  </div>
+</div>
+<div class="container">
+  <div class="reviews">
+    <div *ngFor="let review of reviews.reviews">
+      <span>
+        {{ review.date | date : 'short' }}
+      </span>
+        <p>{{ review.text }}</p>
+      
+    </div>
+    <div *ngIf="userLogedIn">
+      <p><textarea id="review" name="review" rows="4" cols="50" #comment>Please write a review ...</textarea></p>
+      <button (click)="postComment(comment.value)"> Post Review </button>
+      <p *ngIf="userLogedIn"><button (click)="logOut()"> Log Out </button></p>
+    </div>
+  </div>
 
+</div>
 <!--<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="reviews">
   <thead>
     <tr>
@@ -17,12 +46,3 @@
   </tbody>
 </table>-->
 
-<div *ngFor="let review of reviews.reviews">
-  <p>{{ review.date | date : 'short' }}</p>
-  <p>{{ review.text }}</p>
-</div>
-<div *ngIf="userLogedIn">
-  <p><textarea id="review" name="review" rows="4" cols="50" #comment>Please write a review ...</textarea></p>
-  <p><button (click)="postComment(comment.value)"> Post </button></p>
-</div>
-<p *ngIf="userLogedIn"><button (click)="logOut()"> Log Out </button></p>

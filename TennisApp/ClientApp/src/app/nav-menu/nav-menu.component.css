@@ -1,12 +1,26 @@
+.navbar {
+    background-color: black;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  font-size: 28px;
+  font-style: oblique;
+  color: #00ff21;
 }
-
-html {
-  font-size: 14px;
+.navbar-brand a:hover {
+  color: #00ff21;
 }
+.nav-item a:hover {
+  color: #00ff21;
+}
+a.nav-link {
+  color: #ffffff;
+}
+  html {
+    font-size: 14px;
+  }
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -16,3 +30,4 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+

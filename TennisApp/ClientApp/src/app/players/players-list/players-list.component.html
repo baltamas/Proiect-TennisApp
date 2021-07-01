@@ -1,32 +1,50 @@
-<h1 id="tableLabel">Players</h1>
+<div id="cover1" class="cover">
+  <div class="container">
+    <div class="about">
+      <h2 id="tableLabel">Players</h2>
+      <p>
+        <span>
+          The most valuable players in the world <br /> play in our tennis tournament.<br />
+          We invite you to discover them!
+        </span>
+      </p>
+      <p>Players Tennis Tournament.</p>
 
-<p>Players Tennis Tournament.</p>
+      <p *ngIf="!players"><em>Loading...</em></p>
+    </div>
+  </div>
+</div>
+  <div class="container">
+    <div class="player-tabel">
+      <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
+        <thead>
+          <tr>
+            <th></th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>Nationality</th>
+            <th>Gender</th>
+            <th>PlayerRating</th>
+            <th>PlayerScore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of players; let i = index">
+            <td>{{ i+1 }}</td>
+            <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
+            <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.nationality }}</td>
+            <td>{{ player.gender }}</td>
+            <td>{{ player.playerRating }}</td>
+            <td>{{ player.playerScore }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<p *ngIf="!players"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="players">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Age</th>
-      <th>Nationality</th>
-      <th>Gender</th>
-      <th>PlayerRating</th>
-      <th>PlayerScore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let player of players">
-      <td>{{ player.id }}</td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.firstName }} </a></td>
-      <td><a href="player-details?id={{ player.id }}">{{ player.lastName }}  </a></td>
-      <td>{{ player.age }}</td>
-      <td>{{ player.nationality }}</td>
-      <td>{{ player.gender }}</td>
-      <td>{{ player.playerRating }}</td>
-      <td>{{ player.playerScore }}</td>
-    </tr>
-  </tbody>
-</table>
+
+

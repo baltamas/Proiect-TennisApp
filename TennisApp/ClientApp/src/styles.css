@@ -2,11 +2,11 @@
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #000000;
 }
 
 code {
-  color: #e01a76;
+  color: #000000;
 }
 
 .btn-primary {

@@ -1,62 +1,70 @@
 
-<h1>Matches</h1>
-<p>Check out matches details!</p>
+<div>
+  <div class="container">
+    <div class="content">
+      <h1>Matches</h1>
+      <p>Check out matches details!</p>
 
-<p *ngIf="!matches || !players"><em>Loading...</em></p>
+      <p *ngIf="!matches || !players"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matches && players">
-  <thead>
-    <tr>
-      <th>MatchId</th>
-      <th>Stage</th>
-      <th>Date</th>
-      <th>Player1</th>
-      <th>Player2</th>
-      <th>Winner</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let match of matches">
-      <td>{{ match.matchId }}</td>
-      <td>{{ match.stage }}</td>
+      <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matches && players">
+        <thead>
+          <tr>
+            <th>MatchId</th>
+            <th>Stage</th>
+            <th>Date</th>
+            <th>Player1</th>
+            <th>Player2</th>
+            <th>Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let match of matches">
+            <td>{{ match.matchId }}</td>
+            <td>{{ match.stage }}</td>
 
-      <td><input type="datetime-local" id="date" name="daytime" [(ngModel)]="match.date"></td>
+            <td><input type="datetime-local" id="date" name="daytime" [(ngModel)]="match.date"></td>
 
-      <td>
-        <select name="player1" id="player1" [(ngModel)]="match.player1Id">
-          <option *ngFor="let player of players" value="{{player.id}}">{{player.firstName}} {{player.lastName}}</option>
-        </select>
-      </td>
+            <td>
+              <select name="player1" id="player1" [(ngModel)]="match.player1Id">
+                <option *ngFor="let player of players" value="{{player.id}}">{{player.firstName}} {{player.lastName}}</option>
+              </select>
+            </td>
 
-      <td>
-        <select name="player2" id="player2" [(ngModel)]="match.player2Id">
-          <option *ngFor="let player of players" value="{{player.id}}">{{player.firstName}} {{player.lastName}}</option>
-        </select>
-      </td>
+            <td>
+              <select name="player2" id="player2" [(ngModel)]="match.player2Id">
+                <option *ngFor="let player of players" value="{{player.id}}">{{player.firstName}} {{player.lastName}}</option>
+              </select>
+            </td>
 
-      <td>
-        <form>
-          <input type="radio" id="firstWinner" name="winner" [(ngModel)]="match.winner" [value]="true">
-          <label for="firstWinner">player1</label>
+            <td>
+              <form>
+                <input type="radio" id="firstWinner" name="winner" [(ngModel)]="match.winner" [value]="true">
+                <label for="firstWinner">player1</label>
 
-          <input type="radio" id="secondWinner" name="winner" [(ngModel)]="match.winner" [value]="false">
-          <label for="secondWinner">player2</label>
-        </form>
-      </td>
-      <td>
-        <button type="submit" (click)="updateMatch(match)" [disabled]="match.winner!=null">Update</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                <input type="radio" id="secondWinner" name="winner" [(ngModel)]="match.winner" [value]="false">
+                <label for="secondWinner">player2</label>
+              </form>
+            </td>
+            <td>
+              <button type="submit" (click)="updateMatch(match)" [disabled]="match.winner!=null">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-<form>
-  <p>Generate matches</p>
-  <label for="numStages">Number of stages:</label>
-  <input type="number" id="numStages" name="num_stages" [(ngModel)]="num_stages"><br>
+      <form class="form-content">
+        <p>Generate matches</p>
+        <label for="numStages">Number of stages:</label>
+        <input type="number" id="numStages" name="num_stages" [(ngModel)]="num_stages"><br>
 
-  <p>{{errors}}</p>
+        <p>{{errors}}</p>
 
-  <button type="submit" (click)="generateMatches()">Generate matches</button>
-</form>
+        <button type="submit" (click)="generateMatches()">Generate matches</button>
+      </form>
 
+    </div>
+  </div>
+
+
+</div>

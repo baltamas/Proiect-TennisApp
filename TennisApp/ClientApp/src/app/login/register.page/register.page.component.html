@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="content">
+    <h2>Register a commenter.</h2>
+    <div class="register">
+
+      <label for="uname"><b>Email</b></label>
+      <input type="text" name="uname" #userName>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" name="psw" #passWord>
+
+      <label for="pswRepeat"><b>Confirm password</b></label>
+      <input type="password" name="pswRepeat" #passWord2>
+
+      <p style="color:red">{{errors}}</p>
+
+      <button type="submit" (click)="register(userName, passWord, passWord2)">Register</button>
+      <!--<label>
+    <input type="checkbox" checked="checked" name="remember"> Remember me
+  </label>-->
+    </div>
+  </div>
+  
+</div>

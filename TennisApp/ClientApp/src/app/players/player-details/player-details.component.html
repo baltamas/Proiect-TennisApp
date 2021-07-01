@@ -1,17 +1,44 @@
-<h1 id="tableLabel">Player Details</h1>
+<div id="cover1" class="cover">
+  <div class="container">
+    <div class="about">
+      <h2 id="tableLabel">Player Details</h2>
+      <p *ngIf="!player"><em>Loading...</em></p>
+    </div>
+    <div class="content">
+      <h2>{{ player.firstName }} {{ player.lastName }} </h2>
 
-<p>Players Tennis Tournament.</p>
+      <div class="player-img">
+        <img [src]="player.imageUrl" width="200" height="300">
 
-<p *ngIf="!player"><em>Loading...</em></p>
+      </div>
+      <div class="content-details">
+
+        <p>Age: {{ player.age }}</p>
+        <p>Nationality: {{ player.nationality }}</p>
+        <p>Gender: {{ player.gender }}</p>
+        <p>Rating: {{player.playerRating}}</p>
+        <p>Score in tournament: {{ player.playerScore }}</p>
+      </div>
 
 
-<h1>{{ player.firstName }} {{ player.lastName }} </h1>
-<img [src]="player.imageUrl" width="500" height="600" />
-<p>Age: {{ player.age }}</p>
-<p>Nationality: {{ player.nationality }}</p>
-<p>Gender: {{ player.gender }}</p>
-<p>Rating: {{player.playerRating}}</p>
-<p>Score in tournament: {{ player.playerScore }}</p>
-{{player.description}}
+    </div>
+    <div class="description">
+      {{player.description}}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
