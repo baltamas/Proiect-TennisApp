@@ -256,6 +256,9 @@ namespace TennisApp.Controllers
             //    _context.Entry(match).State = EntityState.Modified;
             //}
             //await _context.SaveChangesAsync();
+            foreach (var review in _context.Reviews)
+                _context.Reviews.Remove(review);
+            await _context.SaveChangesAsync();
 
             foreach (var match in _context.Matches)
                 _context.Matches.Remove(match);

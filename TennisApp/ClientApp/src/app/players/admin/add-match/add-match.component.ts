@@ -120,7 +120,10 @@ export class AddMatchComponent implements OnInit {
   updateMatch(match: Matches) {
     this.http.put(this.apiUrl + 'matches/' + match.matchId, match).subscribe(result => {
       this.loadMatches();
-    }, error => console.error(error));
+    },
+      (err) => {
+        this.errors = JSON.stringify(err);
+      })
   }
 
   ngOnInit() {
